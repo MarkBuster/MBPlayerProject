@@ -9,16 +9,23 @@
 #import "ViewController.h"
 #import "MBPlayerViewController.h"
 #import <IJKMediaFramework/IJKMediaFramework.h>
+#import "ijkPlayerManager.h"
 
-#import "IJKMoviePlayerViewController.h"
+#import "MBLocalMovieViewController.h"
+#import "MBLiveViewController.h"
 @interface ViewController ()
 
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 @property (strong, nonatomic) IBOutlet UIButton *playBtn;
+@property (weak, nonatomic) IBOutlet UIButton *localPlayBtn;
+
 @property (strong, nonatomic) IBOutlet UIView *preview;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *indicatorView;
 @property (nonatomic, strong) IJKFFMoviePlayerController *player;
+@property (nonatomic, strong) IJKMPMoviePlayerController *movePlayer;
 
+
+@property (nonatomic, assign) CGRect tempRect;
 @end
 
 @implementation ViewController
@@ -34,29 +41,18 @@
 
     [self.indicatorView startAnimating];
     
-    
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"my_video" ofType:@"mp4"];
-//    NSURL *url = [NSURL fileURLWithPath:path];
-    
-    _player = [[IJKFFMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8"]] withOptions:nil];
-    _player.shouldAutoplay = YES;
-    UIView *playerView = [_player view];
-    playerView.frame = self.preview.bounds;
-    playerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
-    [self.preview insertSubview:playerView atIndex:1];
-    [_player setScalingMode:IJKMPMovieScalingModeAspectFill];
+    UIView *view = [self configPlayer:[self localMovieURL] insertTo:self.preview];
+    [self.preview insertSubview:view  atIndex:1];
     [self installMovieNotificationObservers];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction:)];
     [self.preview addGestureRecognizer:tap];
+
+    self.tempRect = self.preview.frame;
     
-//    IJKMoviePlayerViewController *vc = [[IJKMoviePlayerViewController alloc] init];
-//    vc.url = @"http://devimages.apple.com.edgekey.net/streaming/examples/bipbop_4x3/gear2/prog_index.m3u8";
-//    vc.view.frame = self.preview.bounds;
-//    [self.preview addSubview:vc.view];
-    
-//    [[MPMoviePlayerController new] requestThumbnailImagesAtTimes:<#(NSArray *)#> timeOption:<#(MPMovieTimeOption)#>]
+    UITapGestureRecognizer *tapTwo = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(twoAtion:)];
+    tapTwo.numberOfTapsRequired = 2;
+    [self.preview addGestureRecognizer:tapTwo];
 }
 
 
@@ -64,21 +60,81 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)removePreviewSubViews {
+    if (self.preview.subviews.count >0) {
+        for (NSInteger i = self.preview.subviews.count; i>0; i--) {
+            id temp = [self.preview.subviews objectAtIndex:i];
+            [temp removeFromSuperview];
+        }
+    }
+}
+
 - (IBAction)btnAction:(UIButton *)sender {
+//    if ([self.player isPlaying]) {
+//        [self.player pause];
+//    }else {
+//        [self.player play];
+//    }
+    MBLiveViewController *liveVC = [[MBLiveViewController alloc] init];
+    [self presentViewController:liveVC animated:YES completion:nil];
+}
+- (IBAction)playLocalMovie:(UIButton *)sender {
+//    if ([self.player isPlaying]) {
+//        [self.player pause];
+//    }else {
+//        [self.player play];
+//    }
+    MBLocalMovieViewController *moviceVC = [[MBLocalMovieViewController alloc] init];
+    [self presentViewController:moviceVC animated:YES completion:nil];
+}
+
+- (UIView *)configPlayer:(NSString *) url insertTo:(UIView *) Pview{
+    _player = [[IJKFFMoviePlayerController alloc] initWithContentURLString:url withOptions:nil];
+    _player.shouldAutoplay = YES;
+    [_player setScalingMode:IJKMPMovieScalingModeAspectFill];
+    [_player prepareToPlay];
+    
+    UIView *tempView;
+    if (Pview) {
+        tempView = [_player view];
+        tempView.frame = Pview.bounds;
+        return tempView;
+    }else {
+        return [_player view];
+    }
+}
+
+
+- (NSString *)localMovieURL {
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"my_video" ofType:@"mp4"];
+    BOOL isfile = [[NSFileManager defaultManager] fileExistsAtPath:path];
+    if (!isfile)  return @"";
+    return path;
+}
+
+- (NSString *)liveURL {
+    return @"http://live.hkstv.hk.lxdns.com/live/hks/playlist.m3u8";
+}
+
+
+
+- (void)tapAction:(UITapGestureRecognizer *)tap {
     if ([self.player isPlaying]) {
         [self.player pause];
     }else {
         [self.player play];
     }
-    
 }
 
-- (void)tapAction:(UITapGestureRecognizer *)tap {
+- (void)twoAtion:(UITableViewScrollPosition *)tap {
     MBPlayerViewController *playerVC = [[MBPlayerViewController alloc] init];
+    [playerVC.topView addSubview:[_player view]];
     [self presentViewController:playerVC animated:YES completion:nil];
+    
+    [playerVC setVideoPreviewBlock:^{
+        [self.preview addSubview:[self.player view]];
+    }];
 }
-
-
 
 - (void)installMovieNotificationObservers {
     // 网络状态改变时调用
@@ -132,18 +188,22 @@
 // 网络状态改变 会持续执行
 - (void)loadStateDidChange:(NSNotification*)notification {
     IJKMPMovieLoadState loadState = _player.loadState;
-//    _player.currentPlaybackTime
-//    _player.duration
-//    _player.playableDuration
-//    NSLog(@"%f -- %f -- %f",_player.currentPlaybackTime,_player.duration,_player.playableDuration);
-//    NSLog(@"bufferingProgress == %ld", (long)_player.bufferingProgress);
-    NSLog(@"%@", NSStringFromCGSize(_player.naturalSize));
-    if ((loadState & IJKMPMovieLoadStatePlaythroughOK) != 0) {
-        NSLog(@"LoadStateDidChange: IJKMovieLoadStatePlayThroughOK: %d\n",(int)loadState);
-    }else if ((loadState & IJKMPMovieLoadStateStalled) != 0) {
-        NSLog(@"loadStateDidChange: IJKMPMovieLoadStateStalled: %d\n", (int)loadState);
-    } else {
-        NSLog(@"loadStateDidChange: ???: %d\n", (int)loadState);
+//    NSLog(@"%@", NSStringFromCGSize(_player.naturalSize));
+    switch (loadState) {
+        case IJKMPMovieLoadStatePlayable:
+            NSLog(@"可播放");
+            break;
+        case IJKMPMovieLoadStatePlaythroughOK:
+            NSLog(@"状态为缓冲几乎完成，可以连续播放");
+            break;
+        case IJKMPMovieLoadStateStalled:
+            NSLog(@"缓冲中");
+            break;
+        case IJKMPMovieLoadStateUnknown:
+            NSLog(@"未知状态");
+            break;
+        default:
+            break;
     }
 }
 
@@ -151,24 +211,24 @@
 - (void)moviePlayBackStateDidChange:(NSNotification*)notification {
     switch (_player.playbackState) {
         case IJKMPMoviePlaybackStateStopped:
-            NSLog(@"IJKMPMoviePlayBackStateDidChange %d: stoped", (int)_player.playbackState);
+            NSLog(@"播放状态变化 %d: stoped", (int)_player.playbackState);
             break;
             
         case IJKMPMoviePlaybackStatePlaying:
-            NSLog(@"IJKMPMoviePlayBackStateDidChange %d: playing", (int)_player.playbackState);
+            NSLog(@"开始 %d: playing", (int)_player.playbackState);
             break;
             
         case IJKMPMoviePlaybackStatePaused:
-            NSLog(@"IJKMPMoviePlayBackStateDidChange %d: paused", (int)_player.playbackState);
+            NSLog(@"暂停 %d: paused", (int)_player.playbackState);
             break;
             
         case IJKMPMoviePlaybackStateInterrupted:
-            NSLog(@"IJKMPMoviePlayBackStateDidChange %d: interrupted", (int)_player.playbackState);
+            NSLog(@"打断 %d: interrupted", (int)_player.playbackState);
             break;
             
         case IJKMPMoviePlaybackStateSeekingForward:
         case IJKMPMoviePlaybackStateSeekingBackward: {
-            NSLog(@"IJKMPMoviePlayBackStateDidChange %d: seeking", (int)_player.playbackState);
+            NSLog(@"快进／快退 %d: seeking", (int)_player.playbackState);
             break;
         }
             
@@ -184,15 +244,16 @@
     int reason =[[[notification userInfo] valueForKey:IJKMPMoviePlayerPlaybackDidFinishReasonUserInfoKey] intValue];
     switch (reason) {
         case IJKMPMovieFinishReasonPlaybackEnded:
-            NSLog(@"playbackStateDidChange: IJKMPMovieFinishReasonPlaybackEnded: %d\n", reason);
+            NSLog(@"播放结束: %d\n", reason);
+            [_player play];
             break;
             
         case IJKMPMovieFinishReasonUserExited:
-            NSLog(@"playbackStateDidChange: IJKMPMovieFinishReasonUserExited: %d\n", reason);
+            NSLog(@"播放退出: %d\n", reason);
             break;
             
         case IJKMPMovieFinishReasonPlaybackError:
-            NSLog(@"playbackStateDidChange: IJKMPMovieFinishReasonPlaybackError: %d\n", reason);
+            NSLog(@"播放出错: %d\n", reason);
             break;
             
         default:

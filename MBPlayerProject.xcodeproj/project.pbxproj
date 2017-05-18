@@ -22,8 +22,13 @@
 		D17E14081EC97EFD00263F8D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D17E14071EC97EFD00263F8D /* MobileCoreServices.framework */; };
 		D17E140A1EC980A000263F8D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D17E14091EC980A000263F8D /* libz.tbd */; };
 		D17E140C1EC980A700263F8D /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D17E140B1EC980A700263F8D /* libbz2.tbd */; };
-		D17E14101EC990E400263F8D /* IJKMoviePlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D17E140F1EC990E400263F8D /* IJKMoviePlayerViewController.m */; };
 		D17E14161EC9ACB200263F8D /* Notes.m in Sources */ = {isa = PBXBuildFile; fileRef = D17E14151EC9ACB200263F8D /* Notes.m */; };
+		D17E25A01ECC202F00263F8D /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D17E259F1ECC202F00263F8D /* IJKMediaFramework.framework */; };
+		D17E25A21ECC216900263F8D /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D17E25A11ECC216900263F8D /* libstdc++.tbd */; };
+		D17E25A51ECC2C9000263F8D /* my_video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D17E25A41ECC2C9000263F8D /* my_video.mp4 */; };
+		D17E25A81ECC471B00263F8D /* ijkPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D17E25A71ECC471B00263F8D /* ijkPlayerManager.m */; };
+		D17E2E771ECD80C600263F8D /* MBLocalMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D17E2E761ECD80C600263F8D /* MBLocalMovieViewController.m */; };
+		D17E2E7A1ECD80D400263F8D /* MBLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D17E2E791ECD80D400263F8D /* MBLiveViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,9 +52,16 @@
 		D17E14071EC97EFD00263F8D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D17E14091EC980A000263F8D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D17E140B1EC980A700263F8D /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
-		D17E140E1EC990E400263F8D /* IJKMoviePlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IJKMoviePlayerViewController.h; sourceTree = "<group>"; };
-		D17E140F1EC990E400263F8D /* IJKMoviePlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IJKMoviePlayerViewController.m; sourceTree = "<group>"; };
 		D17E14151EC9ACB200263F8D /* Notes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Notes.m; sourceTree = "<group>"; };
+		D17E259F1ECC202F00263F8D /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
+		D17E25A11ECC216900263F8D /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		D17E25A41ECC2C9000263F8D /* my_video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = my_video.mp4; sourceTree = "<group>"; };
+		D17E25A61ECC471B00263F8D /* ijkPlayerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ijkPlayerManager.h; sourceTree = "<group>"; };
+		D17E25A71ECC471B00263F8D /* ijkPlayerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ijkPlayerManager.m; sourceTree = "<group>"; };
+		D17E2E751ECD80C500263F8D /* MBLocalMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBLocalMovieViewController.h; sourceTree = "<group>"; };
+		D17E2E761ECD80C600263F8D /* MBLocalMovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBLocalMovieViewController.m; sourceTree = "<group>"; };
+		D17E2E781ECD80D400263F8D /* MBLiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBLiveViewController.h; sourceTree = "<group>"; };
+		D17E2E791ECD80D400263F8D /* MBLiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBLiveViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,12 +69,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D17E25A21ECC216900263F8D /* libstdc++.tbd in Frameworks */,
 				D17E140C1EC980A700263F8D /* libbz2.tbd in Frameworks */,
 				D17E140A1EC980A000263F8D /* libz.tbd in Frameworks */,
 				D17E14081EC97EFD00263F8D /* MobileCoreServices.framework in Frameworks */,
 				D17E14061EC97EF200263F8D /* CoreVideo.framework in Frameworks */,
 				D17E14041EC97EEC00263F8D /* CoreMedia.framework in Frameworks */,
 				D17E14021EC97EE500263F8D /* CoreGraphics.framework in Frameworks */,
+				D17E25A01ECC202F00263F8D /* IJKMediaFramework.framework in Frameworks */,
 				D17E14001EC97EDC00263F8D /* AudioToolbox.framework in Frameworks */,
 				D17E13FE1EC97EC600263F8D /* VideoToolbox.framework in Frameworks */,
 			);
@@ -74,6 +88,7 @@
 		D17E13CF1EC9741E00263F8D = {
 			isa = PBXGroup;
 			children = (
+				D17E25A41ECC2C9000263F8D /* my_video.mp4 */,
 				D17E13DA1EC9741E00263F8D /* MBPlayerProject */,
 				D17E13D91EC9741E00263F8D /* Products */,
 				D17E13FC1EC97EC600263F8D /* Frameworks */,
@@ -91,15 +106,20 @@
 		D17E13DA1EC9741E00263F8D /* MBPlayerProject */ = {
 			isa = PBXGroup;
 			children = (
-				D17E13DE1EC9741E00263F8D /* AppDelegate.h */,
+				D17E259F1ECC202F00263F8D /* IJKMediaFramework.framework */,
 				D17E13DF1EC9741E00263F8D /* AppDelegate.m */,
+				D17E13DE1EC9741E00263F8D /* AppDelegate.h */,
 				D17E13E11EC9741E00263F8D /* ViewController.h */,
 				D17E13E21EC9741E00263F8D /* ViewController.m */,
 				D17E14151EC9ACB200263F8D /* Notes.m */,
 				D17E13F21EC9751E00263F8D /* MBPlayerViewController.h */,
 				D17E13F31EC9751E00263F8D /* MBPlayerViewController.m */,
-				D17E140E1EC990E400263F8D /* IJKMoviePlayerViewController.h */,
-				D17E140F1EC990E400263F8D /* IJKMoviePlayerViewController.m */,
+				D17E2E751ECD80C500263F8D /* MBLocalMovieViewController.h */,
+				D17E2E761ECD80C600263F8D /* MBLocalMovieViewController.m */,
+				D17E2E781ECD80D400263F8D /* MBLiveViewController.h */,
+				D17E2E791ECD80D400263F8D /* MBLiveViewController.m */,
+				D17E25A61ECC471B00263F8D /* ijkPlayerManager.h */,
+				D17E25A71ECC471B00263F8D /* ijkPlayerManager.m */,
 				D17E13E41EC9741E00263F8D /* Main.storyboard */,
 				D17E13E71EC9741E00263F8D /* Assets.xcassets */,
 				D17E13E91EC9741E00263F8D /* LaunchScreen.storyboard */,
@@ -120,6 +140,7 @@
 		D17E13FC1EC97EC600263F8D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D17E25A11ECC216900263F8D /* libstdc++.tbd */,
 				D17E140B1EC980A700263F8D /* libbz2.tbd */,
 				D17E14091EC980A000263F8D /* libz.tbd */,
 				D17E14071EC97EFD00263F8D /* MobileCoreServices.framework */,
@@ -194,6 +215,7 @@
 				D17E13EB1EC9741E00263F8D /* LaunchScreen.storyboard in Resources */,
 				D17E13E81EC9741E00263F8D /* Assets.xcassets in Resources */,
 				D17E13E61EC9741E00263F8D /* Main.storyboard in Resources */,
+				D17E25A51ECC2C9000263F8D /* my_video.mp4 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,11 +227,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D17E13E31EC9741E00263F8D /* ViewController.m in Sources */,
+				D17E25A81ECC471B00263F8D /* ijkPlayerManager.m in Sources */,
+				D17E2E771ECD80C600263F8D /* MBLocalMovieViewController.m in Sources */,
 				D17E13E01EC9741E00263F8D /* AppDelegate.m in Sources */,
-				D17E14101EC990E400263F8D /* IJKMoviePlayerViewController.m in Sources */,
 				D17E14161EC9ACB200263F8D /* Notes.m in Sources */,
 				D17E13F41EC9751E00263F8D /* MBPlayerViewController.m in Sources */,
 				D17E13DD1EC9741E00263F8D /* main.m in Sources */,
+				D17E2E7A1ECD80D400263F8D /* MBLiveViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

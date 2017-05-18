@@ -10,4 +10,9 @@
 
 @interface MBPlayerViewController : UIViewController
 
+
+@property (nonatomic, strong) UIView *preview;
+@property (nonatomic, strong) UIView *topView;
+
+@property (nonatomic, copy) void (^videoPreviewBlock)();
 @end

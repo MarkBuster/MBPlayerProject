@@ -30,7 +30,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t86-72-43v">
-                                <rect key="frame" x="47" y="207" width="280" height="52"/>
+                                <rect key="frame" x="47" y="196" width="280" height="52"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.1705772311" green="0.3847960091" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="play">
@@ -51,11 +51,22 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSf-rd-x82">
+                                <rect key="frame" x="47" y="264" width="280" height="58"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.1705772311" green="0.3847960091" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="本地"/>
+                                <connections>
+                                    <action selector="playLocalMovie:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7XP-z7-diT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
                         <outlet property="indicatorView" destination="yfg-2O-Tmf" id="oRb-OB-m3h"/>
+                        <outlet property="localPlayBtn" destination="GSf-rd-x82" id="3m7-Yc-Yd8"/>
                         <outlet property="playBtn" destination="t86-72-43v" id="OCe-vk-t5z"/>
                         <outlet property="preview" destination="hct-zS-lsQ" id="Pgf-8Z-noH"/>
                         <outlet property="textView" destination="jrM-Tq-hfd" id="K5i-E6-AoA"/>
@@ -63,7 +74,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="334" y="138"/>
+            <point key="canvasLocation" x="333.60000000000002" y="137.18140929535232"/>
         </scene>
     </scenes>
 </document>
