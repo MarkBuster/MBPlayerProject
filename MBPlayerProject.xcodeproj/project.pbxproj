@@ -29,6 +29,8 @@
 		D17E25A81ECC471B00263F8D /* ijkPlayerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D17E25A71ECC471B00263F8D /* ijkPlayerManager.m */; };
 		D17E2E771ECD80C600263F8D /* MBLocalMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D17E2E761ECD80C600263F8D /* MBLocalMovieViewController.m */; };
 		D17E2E7A1ECD80D400263F8D /* MBLiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D17E2E791ECD80D400263F8D /* MBLiveViewController.m */; };
+		D17E2E841ECEBF1500263F8D /* VolumeBrightnessView.m in Sources */ = {isa = PBXBuildFile; fileRef = D17E2E831ECEBF1500263F8D /* VolumeBrightnessView.m */; };
+		D17E2E871ECEBF4D00263F8D /* ControlItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = D17E2E861ECEBF4D00263F8D /* ControlItemsView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,10 @@
 		D17E2E761ECD80C600263F8D /* MBLocalMovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBLocalMovieViewController.m; sourceTree = "<group>"; };
 		D17E2E781ECD80D400263F8D /* MBLiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBLiveViewController.h; sourceTree = "<group>"; };
 		D17E2E791ECD80D400263F8D /* MBLiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBLiveViewController.m; sourceTree = "<group>"; };
+		D17E2E821ECEBF1500263F8D /* VolumeBrightnessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VolumeBrightnessView.h; sourceTree = "<group>"; };
+		D17E2E831ECEBF1500263F8D /* VolumeBrightnessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VolumeBrightnessView.m; sourceTree = "<group>"; };
+		D17E2E851ECEBF4D00263F8D /* ControlItemsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ControlItemsView.h; sourceTree = "<group>"; };
+		D17E2E861ECEBF4D00263F8D /* ControlItemsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ControlItemsView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +112,7 @@
 		D17E13DA1EC9741E00263F8D /* MBPlayerProject */ = {
 			isa = PBXGroup;
 			children = (
+				D17E2E811ECEBE8C00263F8D /* View */,
 				D17E259F1ECC202F00263F8D /* IJKMediaFramework.framework */,
 				D17E13DF1EC9741E00263F8D /* AppDelegate.m */,
 				D17E13DE1EC9741E00263F8D /* AppDelegate.h */,
@@ -151,6 +158,17 @@
 				D17E13FD1EC97EC600263F8D /* VideoToolbox.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D17E2E811ECEBE8C00263F8D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D17E2E821ECEBF1500263F8D /* VolumeBrightnessView.h */,
+				D17E2E831ECEBF1500263F8D /* VolumeBrightnessView.m */,
+				D17E2E851ECEBF4D00263F8D /* ControlItemsView.h */,
+				D17E2E861ECEBF4D00263F8D /* ControlItemsView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,6 +246,8 @@
 			files = (
 				D17E13E31EC9741E00263F8D /* ViewController.m in Sources */,
 				D17E25A81ECC471B00263F8D /* ijkPlayerManager.m in Sources */,
+				D17E2E841ECEBF1500263F8D /* VolumeBrightnessView.m in Sources */,
+				D17E2E871ECEBF4D00263F8D /* ControlItemsView.m in Sources */,
 				D17E2E771ECD80C600263F8D /* MBLocalMovieViewController.m in Sources */,
 				D17E13E01EC9741E00263F8D /* AppDelegate.m in Sources */,
 				D17E14161EC9ACB200263F8D /* Notes.m in Sources */,

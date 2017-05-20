@@ -31,8 +31,12 @@
 @implementation ViewController
 
 - (void)viewWillAppear:(BOOL)animated {
-    if (![self.player isPlaying]) {
-        [self.player prepareToPlay];
+    [self.player play];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    if ([self.player isPlaying]) {
+        [self.player pause];
     }
 }
 
@@ -53,6 +57,8 @@
     UITapGestureRecognizer *tapTwo = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(twoAtion:)];
     tapTwo.numberOfTapsRequired = 2;
     [self.preview addGestureRecognizer:tapTwo];
+    
+    [self.player prepareToPlay];
 }
 
 
@@ -70,20 +76,12 @@
 }
 
 - (IBAction)btnAction:(UIButton *)sender {
-//    if ([self.player isPlaying]) {
-//        [self.player pause];
-//    }else {
-//        [self.player play];
-//    }
+ 
     MBLiveViewController *liveVC = [[MBLiveViewController alloc] init];
     [self presentViewController:liveVC animated:YES completion:nil];
 }
 - (IBAction)playLocalMovie:(UIButton *)sender {
-//    if ([self.player isPlaying]) {
-//        [self.player pause];
-//    }else {
-//        [self.player play];
-//    }
+ 
     MBLocalMovieViewController *moviceVC = [[MBLocalMovieViewController alloc] init];
     [self presentViewController:moviceVC animated:YES completion:nil];
 }
@@ -242,6 +240,7 @@
 // 电影播放完成
 - (void)moviePlayBackFinish:(NSNotification*)notification {
     int reason =[[[notification userInfo] valueForKey:IJKMPMoviePlayerPlaybackDidFinishReasonUserInfoKey] intValue];
+    int errorCode = [[[notification userInfo] valueForKey:@"error"] intValue];
     switch (reason) {
         case IJKMPMovieFinishReasonPlaybackEnded:
             NSLog(@"播放结束: %d\n", reason);
@@ -254,6 +253,9 @@
             
         case IJKMPMovieFinishReasonPlaybackError:
             NSLog(@"播放出错: %d\n", reason);
+            if (errorCode == 19) {
+                NSLog(@"硬解失败");
+            }
             break;
             
         default:

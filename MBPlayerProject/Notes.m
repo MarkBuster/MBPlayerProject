@@ -136,11 +136,11 @@
 //    /* We leave some space between them for extensions (drop some
 //     * keyframes for intra-only or drop just some bidir frames). */
 //    IJK_AVDISCARD_NONE    =-16, ///< discard nothing
-//    IJK_AVDISCARD_DEFAULT =  0, ///< discard useless packets like 0 size packets in avi
-//    IJK_AVDISCARD_NONREF  =  8, ///< discard all non reference
-//    IJK_AVDISCARD_BIDIR   = 16, ///< discard all bidirectional frames
-//    IJK_AVDISCARD_NONKEY  = 32, ///< discard all frames except keyframes
-//    IJK_AVDISCARD_ALL     = 48, ///< discard all
+//    IJK_AVDISCARD_DEFAULT =  0, ///< 如果包大小为0，责抛弃无效的包
+//    IJK_AVDISCARD_NONREF  =  8, ///< 抛弃非参考帧（I帧）
+//    IJK_AVDISCARD_BIDIR   = 16, ///< 抛弃B帧
+//    IJK_AVDISCARD_NONKEY  = 32, ///< 抛弃除关键帧以外的，比如B，P帧
+//    IJK_AVDISCARD_ALL     = 48, ///< 抛弃所有的帧
 //} IJKAVDiscard;
 
 
